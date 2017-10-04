@@ -4,14 +4,14 @@
  *  Created on: Oct 2, 2017
  *      Author: Betcher
  */
+#include "Contact.h"
+
 #include <sstream>
 #include <string>
-#include "Person.h"
 #include <vector>
 #include <iostream>
-using namespace std;
 
-Person::Person(std::string line)
+Contact::Contact(std::string line)
 {
 	std::istringstream lineStream(line);
 	getline(lineStream, firstName, ' ');
@@ -19,32 +19,32 @@ Person::Person(std::string line)
 	getline(lineStream, phoneNumber, ' ');
 }
 
-Person::Person(string _firstName, string _lastName, string _phoneNumber)
+Contact::Contact(std::string _firstName, std::string _lastName, std::string _phoneNumber)
 {
 	firstName = _firstName;
 	lastName = _lastName;
 	phoneNumber = _phoneNumber;
 }
 
-string Person::getName()
+std::string Contact::getName()
 {
-	string name;
+	std::string name;
 	name = firstName + " " + lastName;
 	return name;
 }
 
-string Person::getPhoneNumber()
+std::string Contact::getPhoneNumber()
 {
 	return phoneNumber;
 }
 
 
-void Person::print()
+void Contact::print()
 {
-	cout << firstName << " " << lastName << " " << phoneNumber;
+	std::cout << firstName << " " << lastName << " " << phoneNumber;
 }
 
-Person::~Person()
+Contact::~Contact()
 {
 	// TODO Auto-generated destructor stub
 }

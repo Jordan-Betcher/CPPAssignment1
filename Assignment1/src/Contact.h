@@ -5,26 +5,26 @@
  *      Author: Betcher
  */
 
-#ifndef PERSON_H_
-#define PERSON_H_
+#ifndef CONTACT_H_
+#define CONTACT_H_
 #include <vector>
+#include <string>
 
-using namespace std;
 
-class Person
+class Contact
 {
-		string firstName;
-		string lastName;
-		string phoneNumber;
+		std::string firstName;
+		std::string lastName;
+		std::string phoneNumber;
 
 	public:
-		Person (string);
-		Person(string, string, string);
-		string getName();
-		string getPhoneNumber();
+		Contact (std::string);
+		Contact(std::string, std::string, std::string);
+		std::string getName();
+		std::string getPhoneNumber();
 		void print();
-		~Person();
+		~Contact();
 
 };
 
-#endif /* PERSON_H_ */
+#endif /* CONTACT_H_ */
