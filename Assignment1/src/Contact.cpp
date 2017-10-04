@@ -19,8 +19,17 @@ Contact::Contact(std::string line)
 	getline(lineStream, phoneNumber, ' ');
 }
 
+Contact::Contact(std::string name, std::string _phoneNumber)
+{
+	std::istringstream lineStream(name);
+	getline(lineStream, firstName, ' ');
+	getline(lineStream, lastName, ' ');
+	phoneNumber = _phoneNumber;
+}
+
 Contact::Contact(std::string _firstName, std::string _lastName, std::string _phoneNumber)
 {
+
 	firstName = _firstName;
 	lastName = _lastName;
 	phoneNumber = _phoneNumber;
@@ -41,7 +50,7 @@ std::string Contact::getPhoneNumber()
 
 void Contact::print()
 {
-	std::cout << firstName << " " << lastName << " " << phoneNumber;
+	std::cout << firstName << " " << lastName << " " << phoneNumber << std::endl;
 }
 
 Contact::~Contact()

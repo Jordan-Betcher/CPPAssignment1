@@ -8,55 +8,67 @@
 
 #include <iostream>
 #include <fstream>
-#include <vector>
-#include "Person.h"
+
+#include "Contact.h"
 
 using namespace std;
 
-vector<string> getLinesFromFile(string location);
-vector<Person> getPersonsFromLines(vector<string> lines);
+string[] getLinesFromFile(string location);
+Contact[] getContactsFromLines(string[] lines);
+void deleteLastCharacter(string &line);
 
 string textFileName = "phonebook.txt";
 
 int main()
 {
 	vector<string> lines = getLinesFromFile(textFileName);
-	vector<Person> persons = getPersonsFromLines(lines);
+	vector<Contact> contacts = getContactsFromLines(lines);
 
 	bool running = true;
 	cout << "Please type one of the following" << endl;
 	while (running)
 	{
-		string name, phone;
 		cout << "A(Add) | S(Search) | D(Delete) | L(List) | Q(Quit): ";
-		char test;
-		cin >> test;
-		switch (test)
+		string word;
+		std::getline(cin, word);
+		char letter = word[0];
+		if(letter == 'A')
 		{
-			case 'Q':
-				running = false;
-				break;
-			case 'A':
-				cout << "Enter name: ";
-				cin >> name;
-				cout << "Enter phone: ";
-				cin >> phone;
+			string name, phone;
+			cout << "Enter name: ";
+			std::getline(cin, name);
+			deleteLastCharacter(name);
 
-				cout << name + " " + phone << " has been stored in the vector"
-				        << endl;
-				break;
-
-			case 'S':
-			case 'D':
-			case 'L':
-			default:
-				cout
-				        << "Sorry, we weren't able to process your request, please try again"
-				        << endl;
+			cout << "Enter phone: ";
+			std::getline(cin, phone);
+			deleteLastCharacter(phone);
+			Contact contact(name, phone);
+		}
+		else if(letter == 'S')
+		{
 
 		}
+		else if(letter == 'D')
+		{
+
+		}
+		else if(letter == 'L')
+		{
+			for(int i = 0; i < contacts.size(); i++)
+			{
+				contacts[i].print();
+			}
+		}
+		else if(letter == 'Q')
+		{
+			running = false;
+		}
+		else
+		{
+			cout << "Could not process " << word << ", please enter A, S, D, L, or Q" << endl;
+		}
 	}
-	cout << "The program has ended, have a nice day.";
+	cout << "The program has ended, have a nice day." << endl;
 
 	return 0;
 }
@@ -78,15 +90,20 @@ vector<string> getLinesFromFile(string location)
 	return lines;
 }
 
-vector<Person> getPersonsFromLines(vector<string> lines)
+vector<Contact> getContactsFromLines(vector<string> lines)
 {
-	vector<Person> persons;
+	vector<Contact> contacts;
 
 	for (unsigned int i = 0; i < lines.size(); i++)
 	{
-		Person person(lines[i]);
-		persons.push_back(person);
+		Contact contact(lines[i]);
+		contacts.push_back(contact);
 	}
 
-	return persons;
+	return contacts;
+}
+
+void deleteLastCharacter(string &line)
+{
+	line.erase(line.end()-1, line.end());
 }
