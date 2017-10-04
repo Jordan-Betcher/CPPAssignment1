@@ -8,13 +8,14 @@
 
 #include <iostream>
 #include <fstream>
+#include <vector>
 
 #include "Contact.h"
 
 using namespace std;
 
-string[] getLinesFromFile(string location);
-Contact[] getContactsFromLines(string[] lines);
+vector<string> getLinesFromFile(string location);
+vector<Contact> getContactsFromLines(vector<string> lines);
 void deleteLastCharacter(string &line);
 
 string textFileName = "phonebook.txt";
