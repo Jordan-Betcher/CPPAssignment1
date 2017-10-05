@@ -17,7 +17,7 @@ using namespace std;
 vector<string> getLinesFromFile(string location);
 vector<Contact> getContactsFromLines(vector<string> lines);
 void deleteLastCharacter(string &line);
-
+//test
 string textFileName = "phonebook.txt";
 
 int main()
