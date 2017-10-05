@@ -16,7 +16,7 @@ using namespace std;
 
 vector<string> getLinesFromFile(string location);
 vector<Contact> getContactsFromLines(vector<string> lines);
-void deleteLastCharacter(string &line);
+void deleteNewLine(string &line);
 //test
 string textFileName = "phonebook.txt";
 
@@ -38,19 +38,47 @@ int main()
 			string name, phone;
 			cout << "Enter name: ";
 			std::getline(cin, name);
-			deleteLastCharacter(name);
+			deleteNewLine(name);
 
 			cout << "Enter phone: ";
 			std::getline(cin, phone);
-			deleteLastCharacter(phone);
+			deleteNewLine(phone);
 			Contact contact(name, phone);
+			contacts.push_back(contact);
 		}
 		else if(letter == 'S')
 		{
+			string name;
+			cout << "Enter name: ";
+			std::getline(cin, name);
+			deleteNewLine(name);
 
+			for(int i = 0; i < contacts.size(); i++)
+			{
+				Contact contact = contacts[i];
+				if(contact.getName() == name)
+				{
+					contact.print();
+					break;
+				}
+			}
 		}
 		else if(letter == 'D')
 		{
+			string name;
+			cout << "Enter name: ";
+			std::getline(cin, name);
+			deleteNewLine(name);
+			int i = 0;
+			for(; i < contacts.size(); i++)
+			{
+				Contact contact = contacts[i];
+				if(contact.getName() == name)
+				{
+					break;
+				}
+			}
+			contacts.erase(contacts.begin() + i);
 
 		}
 		else if(letter == 'L')
@@ -104,7 +132,7 @@ vector<Contact> getContactsFromLines(vector<string> lines)
 	return contacts;
 }
 
-void deleteLastCharacter(string &line)
+void deleteNewLine(string &line)
 {
 	line.erase(line.end()-1, line.end());
 }
