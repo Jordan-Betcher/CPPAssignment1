@@ -16,14 +16,18 @@ using namespace std;
 
 vector<string> getLinesFromFile(string location);
 vector<Contact> getContactsFromLines(vector<string> lines);
+void getContactsFromVector(vector<Contact> lines);
 void deleteNewLine(string &line);
 //test
 string textFileName = "phonebook.txt";
+Contact arrayContacts[151424*2];
+int contactsArrayCount = 0;
 
 int main()
 {
 	vector<string> lines = getLinesFromFile(textFileName);
 	vector<Contact> contacts = getContactsFromLines(lines);
+	getContactsFromVector(contacts);
 
 	bool running = true;
 	cout << "Please type one of the following" << endl;
@@ -36,6 +40,7 @@ int main()
 		if(letter == 'A')
 		{
 			string name, phone;
+
 			cout << "Enter name: ";
 			std::getline(cin, name);
 			deleteNewLine(name);
@@ -43,8 +48,10 @@ int main()
 			cout << "Enter phone: ";
 			std::getline(cin, phone);
 			deleteNewLine(phone);
+
 			Contact contact(name, phone);
-			contacts.push_back(contact);
+			arrayContacts[contactsArrayCount] = contact;
+			contactsArrayCount++;
 		}
 		else if(letter == 'S')
 		{
@@ -53,9 +60,9 @@ int main()
 			std::getline(cin, name);
 			deleteNewLine(name);
 
-			for(int i = 0; i < contacts.size(); i++)
+			for(int i = 0; i < contactsArrayCount; i++)
 			{
-				Contact contact = contacts[i];
+				Contact contact = arrayContacts[i];
 				if(contact.getName() == name)
 				{
 					contact.print();
@@ -70,11 +77,13 @@ int main()
 			std::getline(cin, name);
 			deleteNewLine(name);
 			int i = 0;
-			for(; i < contacts.size(); i++)
+			for(; i < contactsArrayCount; i++)
 			{
-				Contact contact = contacts[i];
+				Contact contact = arrayContacts[i];
 				if(contact.getName() == name)
 				{
+					arrayContacts[i] = arrayContacts[contactsArrayCount - 1];
+					contactsArrayCount--;
 					break;
 				}
 			}
@@ -83,9 +92,9 @@ int main()
 		}
 		else if(letter == 'L')
 		{
-			for(int i = 0; i < contacts.size(); i++)
+			for(int i = 0; i < contactsArrayCount; i++)
 			{
-				contacts[i].print();
+				arrayContacts[i].print();
 			}
 		}
 		else if(letter == 'Q')
@@ -132,6 +141,14 @@ vector<Contact> getContactsFromLines(vector<string> lines)
 	return contacts;
 }
 
+void getContactsFromVector(vector<Contact> contacts)
+{
+	for (unsigned int i = 0; i < contacts.size(); i++)
+	{
+		arrayContacts[i] = contacts[i];
+		contactsArrayCount++;
+	}
+}
 void deleteNewLine(string &line)
 {
 	line.erase(line.end()-1, line.end());

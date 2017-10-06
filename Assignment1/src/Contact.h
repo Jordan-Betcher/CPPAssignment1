@@ -18,6 +18,7 @@ class Contact
 		std::string phoneNumber;
 
 	public:
+		Contact();
 		Contact(std::string);
 		Contact(std::string, std::string);
 		Contact(std::string, std::string, std::string);

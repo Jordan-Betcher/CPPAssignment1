@@ -11,6 +11,10 @@
 #include <vector>
 #include <iostream>
 
+Contact::Contact()
+{
+}
+
 Contact::Contact(std::string line)
 {
 	std::istringstream lineStream(line);
