@@ -30,7 +30,8 @@ int main()
 	getContactsFromVector(contacts);
 
 	bool running = true;
-	cout << "Please type one of the following" << endl;
+	cout << "***MY PHONEBOOK APPLICATION***" << endl;
+	cout << "Please choose an operation:" << endl;
 	while (running)
 	{
 		cout << "A(Add) | S(Search) | D(Delete) | L(List) | Q(Quit): ";
@@ -67,7 +68,7 @@ int main()
 				Contact contact = arrayContacts[i];
 				if(contact == findContact)
 				{
-					contact.print();
+					cout << "Phone Number: " << contact.getPhoneNumber() << endl;
 					break;
 				}
 			}
@@ -107,6 +108,7 @@ int main()
 		{
 			cout << "Could not process " << word << ", please enter A, S, D, L, or Q" << endl;
 		}
+		cout << endl;
 	}
 	cout << "The program has ended, have a nice day." << endl;
 
