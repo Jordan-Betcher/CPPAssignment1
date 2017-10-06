@@ -24,6 +24,7 @@ class Contact
 		Contact(std::string, std::string, std::string);
 		std::string getName();
 		std::string getPhoneNumber();
+		friend bool operator==(const Contact&, const Contact&);
 		void print();
 		~Contact();
 

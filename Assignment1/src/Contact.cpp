@@ -51,6 +51,10 @@ std::string Contact::getPhoneNumber()
 	return phoneNumber;
 }
 
+bool operator ==(const Contact &contact1, const Contact &contact2)
+{
+	return contact1.firstName + " " + contact1.lastName == contact2.firstName + " " + contact2.lastName;
+}
 
 void Contact::print()
 {

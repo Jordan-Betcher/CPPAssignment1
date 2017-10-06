@@ -60,10 +60,12 @@ int main()
 			std::getline(cin, name);
 			deleteNewLine(name);
 
+			Contact findContact(name);
+
 			for(int i = 0; i < contactsArrayCount; i++)
 			{
 				Contact contact = arrayContacts[i];
-				if(contact.getName() == name)
+				if(contact == findContact)
 				{
 					contact.print();
 					break;
