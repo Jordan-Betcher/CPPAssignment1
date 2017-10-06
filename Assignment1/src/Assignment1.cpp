@@ -90,7 +90,6 @@ int main()
 					break;
 				}
 			}
-			contacts.erase(contacts.begin() + i);
 
 		}
 		else if(letter == 'L')
